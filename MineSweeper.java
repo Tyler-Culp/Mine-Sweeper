@@ -30,7 +30,57 @@ public class MineSweeper {
         }
         buildHidden();
     }
-    
+
+    public void buildHidden()
+    {
+        for(int i=0; i<10; i++)
+        {
+            for(int j=0; j<10; j++)
+            {
+                int cnt=0;
+                if(hidden[i][j]!=100)
+                {
+
+                    if(i!=0)
+                    {
+                        if(hidden[i-1][j]==100) cnt++;
+                        if(j!=0)
+                        {
+                            if(hidden[i-1][j-1]==100) cnt++;
+                        }
+
+                    }
+                    if(i!=9)
+                    {
+                        if(hidden[i+1][j]==100) cnt++;
+                        if(j!=9)
+                        {
+                            if(hidden[i+1][j+1]==100) cnt++;
+                        }
+                    }
+                    if(j!=0)
+                    {
+                        if(hidden[i][j-1]==100) cnt++;
+                        if(i!=9)
+                        {
+                            if(hidden[i+1][j-1]==100) cnt++;
+                        }
+                    }
+                    if(j!=9)
+                    {
+                        if(hidden[i][j+1]==100) cnt++;
+                        if(i!=0)
+                        {
+                            if(hidden[i-1][j+1]==100) cnt++;
+                        }
+                    }
+
+                    hidden[i][j] = cnt;
+                }
+            }
+        }
+
+    }
     public static void main(String[] args){
         MineSweeper M = new MineSweeper();
         M.startGame();
